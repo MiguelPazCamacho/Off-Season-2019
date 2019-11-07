@@ -135,6 +135,18 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+
+    //Compresor activo en teleoperado
+    if (RobotMap.compresor.getPressureSwitchValue()){
+
+      RobotMap.compresor.start();
+
+    }else{
+      
+    }
+
+
   }
 
   /**
