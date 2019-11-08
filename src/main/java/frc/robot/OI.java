@@ -10,8 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.Command_Climb_Contraer;
-import frc.robot.commands.Command_Climb_Expander;
+import frc.robot.commands.Robot_Climb_Contraer;
+import frc.robot.commands.Robot_Climb_Expander;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,25 +20,24 @@ import frc.robot.commands.Command_Climb_Expander;
  */
 public class OI {
 
-  public Joystick Stick_Chasis;
-  public Joystick Stick_Subsistemas;
-  public Button ButtonA_C;
-  public Button ButtonB_C;
-  public Button ButtonX_C;
-  public Button ButtonY_C;
+  public Joystick Stick_C;
+  public Joystick Stick_Sub;
+  public Button ButtonA2;
+  public Button ButtonB2;
+  public Button ButtonX2;
+  public Button ButtonY2;
 
     
   public OI(){
-    Stick_Chasis = new Joystick(1);
-    Stick_Subsistemas = new Joystick(2);
+    Stick_C = new Joystick(1);
+    Stick_Sub = new Joystick(2);
 
-    ButtonA_C = new JoystickButton(Stick_Chasis, 1);
-    ButtonB_C = new JoystickButton(Stick_Chasis, 2);
+    ButtonA2 = new JoystickButton(Stick_C, 1);
+    ButtonB2 = new JoystickButton(Stick_C, 2);
 
 
-    ButtonA_C.whenPressed(new Command_Climb_Contraer());
-    ButtonB_C.whenPressed(new Command_Climb_Expander());
-
+    ButtonA2.whenPressed(new Robot_Climb_Expander());
+    ButtonB2.whenPressed(new Robot_Climb_Contraer());
 
 
   }

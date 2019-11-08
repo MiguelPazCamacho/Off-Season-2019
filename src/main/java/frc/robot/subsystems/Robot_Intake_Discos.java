@@ -38,7 +38,7 @@ public class Robot_Intake_Discos extends Subsystem {
 
   public void Act_Intake_Discos(){
 
-    State= Robot.m_oi.Stick_Subsistemas.getRawAxis(1);
+    State= Robot.m_oi.Stick_Sub.getRawAxis(1);
 
     if (State>0.5){
       M_intake=1;

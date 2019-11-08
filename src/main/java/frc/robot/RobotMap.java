@@ -42,14 +42,14 @@ public class RobotMap {
 
 
   //Chasis
-  public static int id_m_chasis_fl =1;
-  public static int id_m_chasis_fr =2;
-  public static int id_m_chasis_bl =3;
-  public static int id_m_chasis_br =4;
+  public static int id_m_chasis_fl =5;
+  public static int id_m_chasis_fr =7;
+  public static int id_m_chasis_bl =6;
+  public static int id_m_chasis_br =8;
 
   //Intake de Discos 
-  public static int id_m_intake_L=5;
-  public static int id_m_intake_R=6;
+  public static int id_m_intake_L=3;
+  public static int id_m_intake_R=4;
 
 
   //climb

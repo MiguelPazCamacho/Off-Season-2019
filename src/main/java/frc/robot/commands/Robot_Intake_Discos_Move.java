@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Command_Climb_Contraer extends Command {
-  public Command_Climb_Contraer() {
+public class Robot_Intake_Discos_Move extends Command {
+  public Robot_Intake_Discos_Move() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.robot_Climb);
+    requires(Robot.Robot_intake_discos);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,8 @@ public class Command_Climb_Contraer extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.robot_Climb.Climb_contraer();
+
+    Robot.Robot_intake_discos.Act_Intake_Discos();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,11 +38,13 @@ public class Command_Climb_Contraer extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.Robot_intake_discos.Stop_Intake_Discos();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

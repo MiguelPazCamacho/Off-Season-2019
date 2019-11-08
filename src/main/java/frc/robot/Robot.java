@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.Command_Chasis;
-import frc.robot.commands.Command_Intake_Discos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Robot_Chasis_Maindrive;
+import frc.robot.commands.Robot_Intake_Discos_Move;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Robot_Chasis;
 import frc.robot.subsystems.Robot_Climb;
@@ -29,15 +29,19 @@ import frc.robot.subsystems.Robot_Intake_Discos;
  */
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static Robot_Climb robot_Climb = new Robot_Climb();
   public static OI m_oi;
-  public static Robot_Chasis robot_Chasis;
-  public static Robot_Intake_Discos robot_Intake_Discos;
+
+
+  public static Robot_Climb Robot_climb;
+  public static Robot_Chasis Robot_chasis;
+  public static Robot_Intake_Discos Robot_intake_discos;
+  
+  
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  Command robot_Chasis_Command;
-  Command robot_Intake_Discos_Command;
+  Command robot_chasisCommand;
+  public static Command main_intake_discosCommand;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -45,12 +49,23 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
+
+
+    RobotMap.init();
+    
+    
+    Robot_chasis= new Robot_Chasis();
+    Robot_intake_discos= new Robot_Intake_Discos();
+    Robot_climb= new Robot_Climb();
+
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    robot_Chasis_Command= new Command_Chasis();
-    robot_Intake_Discos_Command= new Command_Intake_Discos();
     SmartDashboard.putData("Auto mode", m_chooser);
+
+
+
+    m_oi= new OI();
+
   }
 
   /**
@@ -121,8 +136,10 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    robot_Chasis_Command.start();
-    robot_Intake_Discos_Command.start();
+    
+    main_intake_discosCommand = new Robot_Intake_Discos_Move();
+    robot_chasisCommand= new Robot_Chasis_Maindrive();
+
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -136,6 +153,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
+
+    robot_chasisCommand.start();
+    main_intake_discosCommand.start();
 
     //Compresor activo en teleoperado
     if (RobotMap.compresor.getPressureSwitchValue()){

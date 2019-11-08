@@ -38,9 +38,9 @@ public class Robot_Chasis extends Subsystem {
   }
 
   public void Move_Chasis(){
-    Rotacion= Robot.m_oi.Stick_Chasis.getRawAxis(0);
-    Adelante= Robot.m_oi.Stick_Chasis.getRawAxis(3);
-    Atras=  -Robot.m_oi.Stick_Chasis.getRawAxis(2);
+    Rotacion= Robot.m_oi.Stick_C.getRawAxis(0);
+    Adelante= Robot.m_oi.Stick_C.getRawAxis(3);
+    Atras=  -Robot.m_oi.Stick_C.getRawAxis(2);
 
     if (Adelante>0.25||Atras<-0.25){
       velocidad = Adelante+Atras;
