@@ -21,16 +21,16 @@ import frc.robot.commands.Robot_Climb_Expander;
 public class OI {
 
   public Joystick Stick_C;
-  public Joystick Stick_Sub;
+  //public Joystick Stick_Sub;
   public Button ButtonA2;
   public Button ButtonB2;
-  public Button ButtonX2;
-  public Button ButtonY2;
+  //public Button ButtonX2;
+  //public Button ButtonY2;
 
     
   public OI(){
-    Stick_C = new Joystick(1);
-    Stick_Sub = new Joystick(2);
+    Stick_C = new Joystick(0);
+    //Stick_Sub = new Joystick(2);
 
     ButtonA2 = new JoystickButton(Stick_C, 1);
     ButtonB2 = new JoystickButton(Stick_C, 2);

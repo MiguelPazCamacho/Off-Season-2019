@@ -31,14 +31,15 @@ public class Robot_Intake_Discos extends Subsystem {
   }
 
   public void Stop_Intake_Discos(){
-
+    /*
     RobotMap.M_intake_R.set(ControlMode.PercentOutput, 0);
+    */
 
   }
 
   public void Act_Intake_Discos(){
 
-    State= Robot.m_oi.Stick_Sub.getRawAxis(1);
+    //State= Robot.m_oi.Stick_C.getRawAxis(1);
 
     if (State>0.5){
       M_intake=1;
@@ -52,9 +53,9 @@ public class Robot_Intake_Discos extends Subsystem {
       M_intake=0;
 
     }
-
+    /*
     RobotMap.M_intake_R.set(ControlMode.PercentOutput, M_intake);
-
+    */
   }
 
     /*

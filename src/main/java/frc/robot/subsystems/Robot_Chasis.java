@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -32,8 +34,10 @@ public class Robot_Chasis extends Subsystem {
   }
 
   public void Stop_Chasis(){
-    RobotMap.csm_m_chasis_fl.set(0);
-    RobotMap.csm_m_chasis_fr.set(0);
+    
+    RobotMap.M_Chasis_fl.set(ControlMode.PercentOutput, 0); 
+    RobotMap.M_Chasis_fr.set(ControlMode.PercentOutput, 0);
+    
 
   }
 
@@ -42,15 +46,15 @@ public class Robot_Chasis extends Subsystem {
     Adelante= Robot.m_oi.Stick_C.getRawAxis(3);
     Atras=  -Robot.m_oi.Stick_C.getRawAxis(2);
 
-    if (Adelante>0.25||Atras<-0.25){
+    if (Adelante>0.15||Atras<-0.15){
       velocidad = Adelante+Atras;
       Lado_R =velocidad;
       Lado_L = velocidad;
-      if(Rotacion<-0.25 || Rotacion>0.25){
+      if(Rotacion<-0.20 || Rotacion>0.20){
         Lado_R = -velocidad*Rotacion + velocidad;
         Lado_L = velocidad*Rotacion + velocidad;
       }
-      }else if(Rotacion>0.25||Rotacion<-0.25){
+      }else if(Rotacion>0.20||Rotacion<-0.20){
         Lado_R = Rotacion;
         Lado_L = -Rotacion;
       }else{
@@ -69,8 +73,10 @@ public class Robot_Chasis extends Subsystem {
       }else if(Lado_L<-1){
         Lado_L= -1;
       }
-      RobotMap.csm_m_chasis_fl.set(Lado_L);
-      RobotMap.csm_m_chasis_fr.set(Lado_R);
+      
+      RobotMap.M_Chasis_fl.set(ControlMode.PercentOutput, Lado_L);
+      RobotMap.M_Chasis_fr.set(ControlMode.PercentOutput, Lado_R);
+      
   
 
     
